@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Класс PlayerBodyCollision
-/// Реагирует на столкновения/подбор очков и оповещает PlayerController
+/// РљР»Р°СЃСЃ PlayerBodyCollision
+/// Р РµР°РіРёСЂСѓРµС‚ РЅР° СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ/РїРѕРґР±РѕСЂ РѕС‡РєРѕРІ Рё РѕРїРѕРІРµС‰Р°РµС‚ PlayerController
 /// </summary>
 
 public class PlayerBodyCollision : MonoBehaviour
