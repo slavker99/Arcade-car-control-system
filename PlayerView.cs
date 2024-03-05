@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
-/// Класс PlayerView
-/// отвечает за внешний вид игрока (модель, анимации, звук)
+/// РљР»Р°СЃСЃ PlayerView
+/// РѕС‚РІРµС‡Р°РµС‚ Р·Р° РІРЅРµС€РЅРёР№ РІРёРґ РёРіСЂРѕРєР° (РјРѕРґРµР»СЊ, Р°РЅРёРјР°С†РёРё, Р·РІСѓРє)
 /// </summary>
 
 public class PlayerView : MonoBehaviour
 {
-    [Header("Звуки")]
+    [Header("Г‡ГўГіГЄГЁ")]
     [SerializeField] private AudioSource soundCrash;
     [SerializeField] private AudioSource soundEngine;
     [SerializeField] private Animator animator;
