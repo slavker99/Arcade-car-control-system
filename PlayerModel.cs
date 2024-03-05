@@ -2,33 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-
 /// <summary>
-/// Класс PlayerModel
-/// Cодержит основные параметры игрока
-/// От сюда берет данные игровой HUD
+/// РљР»Р°СЃСЃ PlayerModel
+/// CРѕРґРµСЂР¶РёС‚ РѕСЃРЅРѕРІРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РёРіСЂРѕРєР°
+/// РћС‚ СЃСЋРґР° Р±РµСЂРµС‚ РґР°РЅРЅС‹Рµ РёРіСЂРѕРІРѕР№ HUD
 /// </summary>
 
 public class PlayerModel : MonoBehaviour
 {
     [SerializeField] private GameSceneUI gameSceneUI;
 
-    [Header("Жизни")]
+    [Header("Г†ГЁГ§Г­ГЁ")]
     [SerializeField] private int maxLives = 7;
     public int currentLives { get; private set; }
 
-    [Header("Скорость")]
+    [Header("Г‘ГЄГ®Г°Г®Г±ГІГј")]
     [SerializeField] private float currentSpeed = 0;
     [SerializeField] private float crashSpeed = 20;
     [SerializeField] private float defaultSpeed = 30;
     [SerializeField] private float startSpeed = 40;
     [SerializeField] private float maxSpeed = 100;
 
-    [Header("Очки")]
+    [Header("ГЋГ·ГЄГЁ")]
     [SerializeField] private float allScores = 0;
     [SerializeField] private float currentScores = 0;
 
-    //[Header("Информация о тюнинге")]
+    //[Header("Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї Г® ГІГѕГ­ГЁГ­ГЈГҐ")]
     //public static List<int> purchaseMods = new List<int> { 100, 200, 300, 400, 500, 600 };
     //public static List<int> mainMods = new List<int> { 100, 200, 300, 400, 500, 600 };
 
@@ -46,7 +45,7 @@ public class PlayerModel : MonoBehaviour
         currentScores = 0;
     }
 
-    public void SetСurrentSpeed(float val)
+    public void SetГ‘urrentSpeed(float val)
     {
         if (val >= 0)
             currentSpeed = val;
