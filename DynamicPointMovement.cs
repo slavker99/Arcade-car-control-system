@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Класс DynamicPointMovement
-/// Описывает движение игрока по радиальной траектории с перестроениями
+/// РљР»Р°СЃСЃ DynamicPointMovement
+/// РћРїРёСЃС‹РІР°РµС‚ РґРІРёР¶РµРЅРёРµ РёРіСЂРѕРєР° РїРѕ СЂР°РґРёР°Р»СЊРЅРѕР№ С‚СЂР°РµРєС‚РѕСЂРёРё СЃ РїРµСЂРµСЃС‚СЂРѕРµРЅРёСЏРјРё
 /// </summary>
 
 public class DynamicPointMovement : PlayerMovement
