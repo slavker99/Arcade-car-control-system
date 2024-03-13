@@ -14,9 +14,11 @@
 
   ## Реализация
 
-  (Общий скрин игрока)
+    (Общий скрин игрока)
 
-  (Скрин иерархии)
+  **UML-диаграмма классов**
+  ![UML-диаграмма классов](https://github.com/slavker99/Arcade-car-control-system/blob/main/readme%20images/PlayerSystem2.png?raw=true)
+
 
   PlayerController
   В начале сцены в нем вызывается метод ToStartState(), в котором игрок перемещается на стартовую позицию и у него обнуляются параметры (количество жизней и очков).
