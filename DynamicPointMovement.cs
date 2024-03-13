@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// РљР»Р°СЃСЃ DynamicPointMovement
-/// РћРїРёСЃС‹РІР°РµС‚ РґРІРёР¶РµРЅРёРµ РёРіСЂРѕРєР° РїРѕ СЂР°РґРёР°Р»СЊРЅРѕР№ С‚СЂР°РµРєС‚РѕСЂРёРё СЃ РїРµСЂРµСЃС‚СЂРѕРµРЅРёСЏРјРё
+/// Класс DynamicPointMovement
+/// Описывает движение игрока по радиальной траектории с перестроениями
 /// </summary>
 
 public class DynamicPointMovement : PlayerMovement
 {
     [SerializeField] private Transform lanesTransform;
     [SerializeField] private List<Transform> lanes;
-    [SerializeField] private Transform currentLaneTransform;
+    private Transform currentLaneTransform;
+    [SerializeField] private CameraController cameraController;
 
     private void FixedUpdate()
     {
@@ -21,6 +22,8 @@ public class DynamicPointMovement : PlayerMovement
         {
             MoveForward();
         }
+        if (cameraController) 
+            cameraController.CustomUpdate();
     }
 
     private void MoveForward()
@@ -37,6 +40,7 @@ public class DynamicPointMovement : PlayerMovement
         currentLaneTransform = lanes[lane].transform;
         lastLane = currentLane;
         currentLane = lane;
+        cameraController.ChangePos(lane);
     }
 
     public override void MoveToPoint(Transform point)
@@ -55,7 +59,9 @@ public class DynamicPointMovement : PlayerMovement
     {
         //currentSpeed = model.crashSpeed;
         if (controller.isChangingLane != Direction.None)
+        {
             ChangeLane(lastLane);
+        }
     }
 
     public override void GameOverState()

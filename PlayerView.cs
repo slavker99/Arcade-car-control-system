@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
-/// РљР»Р°СЃСЃ PlayerView
-/// РѕС‚РІРµС‡Р°РµС‚ Р·Р° РІРЅРµС€РЅРёР№ РІРёРґ РёРіСЂРѕРєР° (РјРѕРґРµР»СЊ, Р°РЅРёРјР°С†РёРё, Р·РІСѓРє)
+/// Класс PlayerView
+/// отвечает за внешний вид игрока (модель, анимации, звук)
 /// </summary>
 
 public class PlayerView : MonoBehaviour
 {
-    [Header("Г‡ГўГіГЄГЁ")]
+    public PlayerTuningView TuningView;
+    [Header("Звуки")]
     [SerializeField] private AudioSource soundCrash;
     [SerializeField] private AudioSource soundEngine;
+    [Header("Анимации")]
     [SerializeField] private Animator animator;
+    [SerializeField] private List<Transform> wheelsTransform;
 
     public void CrashState(Direction dir)
     {
@@ -49,5 +53,12 @@ public class PlayerView : MonoBehaviour
     public void OnGabaritLights()
     {
 
+    }
+
+    public void RotateWheelsAnimation()
+    {
+        foreach (var wh in wheelsTransform)
+            wh.Rotate(new Vector3(0,0, 700 * Time.deltaTime));
+            //wh.rotation = Quaternion.Euler(wh.rotation.eulerAngles.x, wh.rotation.eulerAngles.y, wh.rotation.eulerAngles.z + 700 * Time.deltaTime);
     }
 }

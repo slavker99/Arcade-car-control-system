@@ -4,14 +4,14 @@ using System.ComponentModel;
 using UnityEngine;
 
 /// <summary>
-/// РљР»Р°СЃСЃ PlayerController
-/// РћСЃРЅРѕРІРЅРѕР№ РєР»Р°СЃСЃ РёРіСЂРѕРєР°, РёР· РЅРµРіРѕ РїСЂРѕРёСЃС…РѕРґРёС‚ РєРѕРЅС‚СЂРѕР»СЊ РІСЃРµС… РґРµР№СЃС‚РІРёР№ Рё СЃРѕСЃС‚РѕСЏРЅРёР№
-/// РЈРїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕРєРѕРј РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ СЃ РїРѕРјРѕС‰СЊСЋ РёР·РјРµРЅРµРЅРёСЏ С‚СЂС‘С… РѕСЃРЅРѕРІРЅС‹С… РєР»Р°СЃСЃРѕРІ:
-/// - PlayerView - РѕС‚РІРµС‡Р°РµС‚ Р·Р° РІРЅРµС€РЅРёР№ РІРёРґ РёРіСЂРѕРєР° (РјРѕРґРµР»СЊ, Р°РЅРёРјР°С†РёРё, Р·РІСѓРє)
-/// - PlayerModel - СЃРѕРґРµСЂР¶РёС‚ РѕСЃРЅРѕРІРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РёРіСЂРѕРєР°
-/// - PlayerMovement - РѕС‚РІРµС‡Р°РµС‚ Р·Р° СЃРїРѕСЃРѕР± РїРµСЂРµРјРµС‰РµРЅРёСЏ, РїРµСЂРµСЃС‚СЂРѕРµРЅРёСЏ, СЂР°Р·РіРѕРЅ/С‚РѕСЂРјРѕР¶РµРЅРёРµ Рё С‚.Рґ.
-/// РўР°РєР¶Рµ СЃРѕРґРµСЂР¶РёС‚ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ ChangingLaneQueue
-/// РћРЅ РїРѕРјРѕРіР°РµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹С… РїРµСЂРµСЃС‚СЂРѕРµРЅРёРµ РїРѕРґСЂСЏРґ
+/// Класс PlayerController
+/// Основной класс игрока, из него происходит контроль всех действий и состояний
+/// Управление игроком осуществляется с помощью изменения трёх основных классов:
+/// - PlayerView - отвечает за внешний вид игрока (модель, анимации, звук)
+/// - PlayerModel - содержит основные параметры игрока
+/// - PlayerMovement - отвечает за способ перемещения, перестроения, разгон/торможение и т.д.
+/// Также содержит вспомогательный класс ChangingLaneQueue
+/// Он помогает обрабатывать несколько последовательных перестроение подряд
 /// </summary>
 
 public class PlayerController : MonoBehaviour
@@ -33,6 +33,23 @@ public class PlayerController : MonoBehaviour
         changingLaneQueue.Initialization(PlayerMovement, this);
     }
 
+    private void Update()
+    {
+        PlayerModel.SetСurrentSpeed(PlayerMovement.GetCurrentSpeed());
+    }
+
+    public void LeftMove()
+    {
+        if (isControlled)
+            changingLaneQueue.AddAction(Direction.Left);
+    }
+
+    public void RightMove()
+    {
+        if (isControlled)
+            changingLaneQueue.AddAction(Direction.Right);
+    }
+
     public void ToStartState()
     {
         isMoving = true;
@@ -45,15 +62,15 @@ public class PlayerController : MonoBehaviour
         isControlled = true;
     }
 
-    public void Crash()
+    public void CrashState()
     {
         PlayerModel.TakeAwayLive();
         PlayerMovement.CrashState();
         changingLaneQueue.ClearQueue();
         if (PlayerModel.currentLives == 0)
         {
-            //GameOver();
-            //return;
+            GameOverState();
+            return;
         }
         StartCoroutine(CrashStateCoruntine());
         PlayerView.CrashState(isChangingLane);
@@ -69,7 +86,7 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
-    public void GameOver()
+    public void GameOverState()
     {
         PlayerView.GameOverState();
         PlayerMovement.GameOverState();
@@ -79,20 +96,5 @@ public class PlayerController : MonoBehaviour
     public void SetSpeed(float speed)
     {
         PlayerMovement.SetSpeed(speed);
-    }
-
-    private void Update()
-    {
-        if (isControlled)
-            InputControlling();
-        PlayerModel.SetГ‘urrentSpeed(PlayerMovement.GetCurrentSpeed());
-    }
-
-    private void InputControlling()
-    {
-        if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
-            changingLaneQueue.AddAction(Direction.Left);
-        if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
-            changingLaneQueue.AddAction(Direction.Right);
     }
 }

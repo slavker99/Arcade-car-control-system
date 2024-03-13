@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// РљР»Р°СЃСЃ PlayerBodyCollision
-/// Р РµР°РіРёСЂСѓРµС‚ РЅР° СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ/РїРѕРґР±РѕСЂ РѕС‡РєРѕРІ Рё РѕРїРѕРІРµС‰Р°РµС‚ PlayerController
+/// Класс PlayerBodyCollision
+/// Реагирует на столкновения/подбор очков и оповещает PlayerController
 /// </summary>
 
 public class PlayerBodyCollision : MonoBehaviour
@@ -21,7 +21,7 @@ public class PlayerBodyCollision : MonoBehaviour
 
         if ((other.tag == "BotBody") || (other.tag == "Border"))
         {
-            controller.Crash();
+            controller.CrashState();
         }
 
         if (other.tag == "ScoreBooster")

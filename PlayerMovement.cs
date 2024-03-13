@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// РљР»Р°СЃСЃ PlayerMovement
-/// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РѕРїРёСЃР°РЅРёСЏ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ РёРіСЂРѕРєР°
+/// Класс PlayerMovement
+/// Базовый класс для описания передвижения игрока
 /// </summary>
-
+/// 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] protected Transform playerTransform;
