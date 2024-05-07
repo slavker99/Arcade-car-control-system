@@ -14,7 +14,7 @@
 
   ## Реализация
 
-    (Общий скрин игрока)
+  ![Состояние аварии](https://github.com/slavker99/Arcade-car-control-system/blob/main/gameState.gif?raw=true)
 
   **UML-диаграмма классов**
   ![UML-диаграмма классов](https://github.com/slavker99/Arcade-car-control-system/blob/main/readme%20images/PlayerSystem2.png?raw=true)
@@ -51,7 +51,8 @@
   }
   ```
 
-  (гифка с врезанием)
+  ![Состояние аварии](https://github.com/slavker99/Arcade-car-control-system/blob/main/crashState.gif?raw=true)
+
 
   При утрате всех жизней срабатывает метод GameOverState(), который запускает состояние потери управления.
 
@@ -62,6 +63,9 @@
     PlayerMovement.GameOverState();
     isControlled = false;
   }
+
   ```
+
+  ![Состояние аварии](https://github.com/slavker99/Arcade-car-control-system/blob/main/gameOverState.gif?raw=true)
 
 
